@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-    
+
     public static void main(String[] args) {
         int dogCount = 1;
         System.out.println("I own " + dogCount + " " + pluralize("dog", dogCount) + ".");
@@ -43,25 +43,32 @@ public class Main {
                 numberOfHeads++;
             }
         }
-        
+
         System.out.println("It took " + count + " flips to flip " + numberOfHeads + " head in a row.");
     }
 
     public static void clock() {
-        LocalDateTime now = LocalDateTime.now();;
+        LocalDateTime now = LocalDateTime.now();
+        ;
         String currentTime;
+        int cpuSpeed = 0; // keep track of number of operations for each iteration of while loop
         String previousTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        // checks if the currentTime is equals to previousTime since if it is not, that means a second has passed by and if so, display the time
+        // checks if the currentTime is equals to previousTime since if it is not, that
+        // means a second has passed by and if so, display the time
         while (true) {
             now = LocalDateTime.now();
+            cpuSpeed++;
             currentTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+            cpuSpeed++;
+            cpuSpeed++; // for checking if statement for every iteration
             if (!currentTime.equals(previousTime)) {
-                System.out.println(currentTime);
+                System.out.println(currentTime + " " + ((double) cpuSpeed / 1000000) + " MHz");
+                cpuSpeed = 0;
             }
-            previousTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss")); 
+            cpuSpeed++;
+            previousTime = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         }
     }
 
-    
 }
