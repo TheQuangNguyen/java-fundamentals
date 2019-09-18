@@ -31,15 +31,15 @@ public class LibraryTest {
         }
     }
 
-//    public void testRollNegative() {
-//        Library classUnderTest = new Library();
-//        int[] testArray = classUnderTest.roll(-3);
-//
-//        assertEquals(testArray.length, 0);
-//        for (int number: testArray) {
-//            assertTrue(number <= 6 && number > 0);
-//        }
-//    }
+    @Test
+    public void testRollOne() {
+        int[] testArray = roll(1);
+
+        assertEquals(testArray.length, 1);
+        for (int number: testArray) {
+            assertTrue(number <= 6 && number > 0);
+        }
+    }
 
     ////////// Testing for containsDuplicates method /////////////////
 
@@ -61,6 +61,11 @@ public class LibraryTest {
     @Test
     public void testContainsDuplicatesEmpty() {
         assertFalse(containsDuplicates(new int[]{}));
+    }
+
+    @Test
+    public void testContainsDuplicatesNegative() {
+        assertFalse(containsDuplicates(new int[]{-1,1,2,3,5}));
     }
 
 
@@ -100,7 +105,7 @@ public class LibraryTest {
             {55,54,60,53,59,57,61},
             {65,56,55,52,55,62,57}
         };
-        assertEquals("The lowest average should be 66.50d", 66.50d , calculateLowestAverage2dArray(weeklyMonthTemperatures), 0.01);
+        assertEquals("The lowest average should be 57.00", 57.00d , calculateLowestAverage2dArray(weeklyMonthTemperatures), 0.01);
     }
 
     @Test
