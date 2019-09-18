@@ -3,8 +3,72 @@
  */
 package basiclibrary;
 
+import java.util.HashSet;
+
 public class Library {
-    public boolean someLibraryMethod() {
-        return true;
+
+    // Write a method called roll that accepts an integer n and rolls a six-sided dice n times.
+    // The method should return an array containing the values of the rolls.
+
+    public static int[] roll(int n) {
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)((Math.random() * n) + 1);
+        }
+
+        return arr;
+    }
+
+    // Write a method called containsDuplicates that returns true or false depending on
+    // whether the array contains duplicate values.
+
+    // I use this resource to learn how to work with hashset
+    // https://www.geeksforgeeks.org/hashset-in-java/
+
+    public static boolean containsDuplicates(int[] arr) {
+        HashSet<Integer> hashSet = new HashSet<>(arr.length);
+
+        for (int number : arr) {
+            if (!hashSet.add(number)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Write a method that accepts an array of integers and calculates and
+    // returns the average of all the values in the array.
+
+    public static double calculateAverages(int[] arr) {
+        if (arr.length == 0) {
+            return 0.00d;
+        }
+
+        int sum = 0;
+
+        for (int number: arr) {
+            sum += number;
+        }
+
+        return (double)(sum) / (double)(arr.length);
+    }
+
+
+    // Given an array of arrays calculate the average value for each array and
+    // return the array with the lowest average.
+
+    public static double calculateLowestAverage2dArray(int[][] arr) {
+        double lowestAverage = calculateAverages(arr[0]);
+
+        for (int i = 1; i < arr.length; i++) {
+            double currentAverage = calculateAverages(arr[i]);
+             if (lowestAverage > currentAverage) {
+                 lowestAverage = currentAverage;
+             }
+        }
+
+        return lowestAverage;
     }
 }
