@@ -4,9 +4,9 @@ This repo contains labs that covers Java fundamentals.
 
 ## Lab 1 - Basics
 
-[Code Solution to Lab 1](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/basics/Main.java)
-
 ### Feature Tasks
+
+[Code Solution to Lab 1](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/basics/Main.java)
 
 #### 1. Pluralize
 
@@ -22,9 +22,9 @@ Write a method clock that uses Java’s built-in LocalDateTime object to constan
 
 ## Lab 2 - Arrays, Loops, Imports, ArrayLists
 
-[Code Solution to Lab 2](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/basiclibrary/src/main/java/basiclibrary/Library.java)
-
 ### Feature Tasks
+
+[Code Solution to Lab 2](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/basiclibrary/src/main/java/basiclibrary/Library.java)
 
 #### 1. Rolling Dice
 
@@ -41,3 +41,68 @@ Write a method that accepts an array of integers and calculates and returns the 
 #### 4. Arrays of Arrays
 
 Given an array of arrays calculate the average value for each array and return the array with the lowest average.
+
+## Lab 3 - Maps, File I/O, and Testing
+
+### Feature Tasks
+
+[Code Solution to First Two Problems]()
+
+#### 1. Analyzing Weather Data
+
+```
+// Daily average temperatures for Seattle, October 1-28 2017
+int[][] weeklyMonthTemperatures = {
+  {66, 64, 58, 65, 71, 57, 60},
+  {57, 65, 65, 70, 72, 65, 51},
+  {55, 54, 60, 53, 59, 57, 61},
+  {65, 56, 55, 52, 55, 62, 57}
+};
+```
+
+Use the October Seattle weather data above. Iterate through all of the data to find the min and max values. Use a HashSet of type Integer to keep track of all the unique temperatures seen. Finally, iterate from the min temp to the max temp and create a String containing any temperature not seen during the month. Return that String.
+
+Expected Output
+```
+High: 72
+Low: 51
+Never saw temperature: 63
+Never saw temperature: 67
+Never saw temperature: 68
+Never saw temperature: 69
+```
+
+#### 2. Tallying Election 
+
+Write a function called tally that accepts a List of Strings representing votes and returns one string to show what got the most votes.
+
+```
+// within your main method...
+List<String> votes = new ArrayList<>();
+votes.add("Bush");
+votes.add("Bush");
+votes.add("Bush");
+votes.add("Shrub");
+votes.add("Hedge");
+votes.add("Shrub");
+votes.add("Bush");
+votes.add("Hedge");
+votes.add("Bush");
+
+String winner = tally(votes);
+System.out.println(winner + " received the most votes!");
+```
+
+#### 3. Javascript Linter
+
+[Code For JS linter]()
+
+Write a method that reads a JavaScript file with a given Path, and generates an error message whenever it finds a line that doesn’t end in a semi-colon.
+
+Read through the file line by line. Create a string that contains a message such as "Line 3: Missing semicolon." if a line is missing a semicolon.
+
+Don’t show an error if the line is empty.
+Don’t show an error if the line ends with an opening curly brace {
+Don’t show an error if the line ends with an closing curly brace }
+Don’t show an error if the line contains if or else
+
