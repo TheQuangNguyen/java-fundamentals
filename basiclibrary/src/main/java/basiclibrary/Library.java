@@ -3,7 +3,9 @@
  */
 package basiclibrary;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class Library {
 
@@ -16,7 +18,6 @@ public class Library {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int)((Math.random() * n) + 1);
         }
-
         return arr;
     }
 
@@ -34,7 +35,6 @@ public class Library {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -45,13 +45,11 @@ public class Library {
         if (arr.length == 0) {
             return 0.00d;
         }
-
         int sum = 0;
 
         for (int number: arr) {
             sum += number;
         }
-
         return (double)(sum) / (double)(arr.length);
     }
 
@@ -70,5 +68,48 @@ public class Library {
         }
 
         return lowestAverage;
+    }
+
+
+    // Iterate through all of the data to find the min and max values.
+    // Use a HashSet of type Integer to keep track of all the unique temperatures seen.
+    // Finally, iterate from the min temp to the max temp and create a String containing any temperature not seen during the month.
+    // Return that String.
+
+//    public static String temperatureNotSeen(int[][] arr2D) {
+//
+//    }
+
+
+    // Write a function called tally that accepts a List of Strings representing votes
+    // and returns one string to show who got the most votes.
+
+    public static String tally(List<String> votes) {
+        HashMap<String, Integer> voteCount = new HashMap<>();
+
+        if (votes.size() == 0) {
+            return "Nobody";
+        }
+
+        for (String vote : votes) {
+            if (voteCount.containsKey(vote)) {
+                voteCount.replace(vote, voteCount.get(vote) + 1);
+            } else {
+                voteCount.put(vote, 1);
+            }
+        }
+
+        int highestTally = 0;
+        String currentWinner = "";
+        for (String vote : voteCount.keySet()) {
+            if (voteCount.get(vote) > highestTally) {
+                currentWinner = vote;
+                highestTally = voteCount.get(vote);
+            } else if (voteCount.get(vote) == highestTally) {
+                currentWinner = currentWinner + ", " + vote;
+            }
+        }
+
+        return currentWinner;
     }
 }
