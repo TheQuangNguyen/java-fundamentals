@@ -4,6 +4,10 @@
 package basiclibrary;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static basiclibrary.Library.*;
 
@@ -136,4 +140,138 @@ public class LibraryTest {
         assertEquals("The lowest average should be 1.00", 1.00d, calculateLowestAverage2dArray(testArray), 0.01);
     }
 
+
+    /////////////////////////// Testing for Maps Method ////////////////////////////////////
+
+
+    // Test for normal temperatures data
+    @Test
+    public void testTemperatureNotSeen() {
+        int[][] weeklyMonthTemperatures = {
+            {66, 64, 58, 65, 71, 57, 60},
+            {57, 65, 65, 70, 72, 65, 51},
+            {55, 54, 60, 53, 59, 57, 61},
+            {65, 56, 55, 52, 55, 62, 57}
+        };
+
+        assertEquals("The temperature that was never seen should be 63,67,68,69",
+            "High: 72\n" +
+                "Low: 51\n" +
+                "Never saw temperature: 63\n" +
+                "Never saw temperature: 67\n" +
+                "Never saw temperature: 68\n" +
+                "Never saw temperature: 69\n",
+            temperatureNotSeen(weeklyMonthTemperatures));
+    }
+
+    // Testing if all data was the same
+    @Test
+    public void testTemperatureNotSeenDuplicates() {
+        int[][] weeklyMonthTemperatures = {
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60}
+        };
+
+        assertEquals("The temperature that was never seen should be none",
+            "High: 60\n" +
+                    "Low: 60\n",
+            temperatureNotSeen(weeklyMonthTemperatures));
+    }
+
+    // Testing if there was not any temperatures that were not seen
+    @Test
+    public void testTemperatureNotSeenNone() {
+        int[][] weeklyMonthTemperatures = {
+                {60,61,62,63,64,65,66},
+                {67,68,69,70,71,72,73},
+                {60,59,58,57,56,55,54},
+                {53,52,51,50,49,48,47}
+        };
+
+        assertEquals("The temperature that was never seen should be none",
+                "High: 73\n" +
+                        "Low: 47\n",
+                temperatureNotSeen(weeklyMonthTemperatures));
+    }
+
+    // Testing for one temperature not seen
+    @Test
+    public void testTemperatureNotSeenOne() {
+        int[][] weeklyMonthTemperatures = {
+                {60,61,62,63,64,65,66},
+                {67,68,69,70,71,72,74},
+                {60,59,58,57,56,55,54},
+                {53,52,51,50,49,48,47}
+        };
+
+        assertEquals("The temperature that was never seen should be 73",
+                "High: 74\n" +
+                        "Low: 47\n" +
+                        "Never saw temperature: 73\n",
+                temperatureNotSeen(weeklyMonthTemperatures));
+    }
+
+
+    //////////////////////////////// Testing for tallying election method ///////////////////////////////
+
+
+    // Testing for a normal case
+    @Test
+    public void testTally() {
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+
+        String winner = tally(votes);
+
+        assertEquals("The winner should be Bush", "Bush", winner);
+    }
+
+    // Testing if there is only one vote
+    @Test
+    public void testTallyOneVote() {
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+
+        String winner = tally(votes);
+
+        assertEquals("The winner should be Bush", "Bush", winner);
+    }
+
+    // Testing if there is only no vote
+    @Test
+    public void testTallyZeroVote() {
+        List<String> votes = new ArrayList<>();
+
+        String winner = tally(votes);
+
+        assertEquals("The winner should be nobody", "Nobody", winner);
+    }
+
+    // Testing if there is a tie in vote
+    @Test
+    public void testTallyEqualVotes() {
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+
+        String winner = tally(votes);
+
+        assertTrue("The winners should include Bush, Shrub, and Hedge", winner.contains("Bush"));
+        assertTrue("The winners should include Bush, Shrub, and Hedge", winner.contains("Shrub"));
+        assertTrue("The winners should include Bush, Shrub, and Hedge", winner.contains("Hedge"));
+    }
 }
