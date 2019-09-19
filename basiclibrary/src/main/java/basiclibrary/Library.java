@@ -3,6 +3,7 @@
  */
 package basiclibrary;
 
+import javax.print.DocFlavor;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -76,9 +77,33 @@ public class Library {
     // Finally, iterate from the min temp to the max temp and create a String containing any temperature not seen during the month.
     // Return that String.
 
-//    public static String temperatureNotSeen(int[][] arr2D) {
-//
-//    }
+    public static String temperatureNotSeen(int[][] arr2D) {
+        HashSet<Integer> seenTemperatures = new HashSet<>();
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        String message = "";
+
+        for (int[] week: arr2D) {
+            for (int day: week) {
+                if (day > max) {
+                    max = day;
+                } else if (day < min) {
+                    min = day;
+                }
+                seenTemperatures.add(day);
+            }
+        }
+
+        message += String.format("High: %d\n", max);
+        message += String.format("Low: %d\n", min);
+        for (int i = min; i <= max; i++) {
+            if (!seenTemperatures.contains(i)) {
+                message += String.format("Never saw temperature: %d\n", i);
+            }
+        }
+
+        return message;
+    }
 
 
     // Write a function called tally that accepts a List of Strings representing votes
