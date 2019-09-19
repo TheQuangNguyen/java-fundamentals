@@ -3,12 +3,87 @@
  */
 package linter;
 
+
 import org.junit.Test;
+
+import java.io.File;
+
+import static linter.App.*;
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+
+    // Testing for a lot of errors
+    @Test
+    public void testJsLinterMultipleErrors() {
+        String expectedError = "Line 2: Use single quote, not double quotes\n" +
+                "Line 3: Missing semicolon\n" +
+                "Line 5: Missing semicolon\n" +
+                "Line 9: Missing semicolon\n" +
+                "Line 13: Missing semicolon\n" +
+                "Line 17: Missing semicolon\n" +
+                "Line 18: Missing semicolon\n" +
+                "Line 19: Missing semicolon\n" +
+                "Line 27: Missing semicolon\n" +
+                "Line 28: Missing semicolon\n" +
+                "Line 30: Use single quote, not double quotes\n" +
+                "Line 41: Missing semicolon\n" +
+                "Line 46: Missing semicolon\n" +
+                "Line 46: Use single quote, not double quotes\n" +
+                "Line 47: Missing semicolon\n" +
+                "Line 47: Use single quote, not double quotes\n" +
+                "Line 48: Missing semicolon\n" +
+                "Line 48: Use single quote, not double quotes\n" +
+                "Line 49: Missing semicolon\n" +
+                "Line 49: Use single quote, not double quotes\n" +
+                "Line 50: Missing semicolon\n";
+
+        File gatesJs = new File("src/main/resources/gates.js");
+        assertEquals(expectedError, jsLinter(gatesJs));
+    }
+
+    // Testing for few errors
+    @Test
+    public void testJsLinterFewErrors() {
+        String expectedError = "Line 3: Missing semicolon\n" +
+                "Line 13: Missing semicolon\n" +
+                "Line 26: Missing semicolon\n" +
+                "Line 31: Use single quote, not double quotes\n" +
+                "Line 32: Use single quote, not double quotes\n" +
+                "Line 33: Missing semicolon\n" +
+                "Line 33: Use single quote, not double quotes\n" +
+                "Line 34: Use single quote, not double quotes\n";
+        File fewErrors = new File("src/main/resources/fewErrors.js");
+        assertEquals(expectedError, jsLinter(fewErrors));
+    }
+
+
+    // Testing for one error
+    @Test
+    public void testJsLinterOneError() {
+        String expectedError = "Line 31: Use single quote, not double quotes\n";
+        File oneError = new File("src/main/resources/oneError.js");
+
+        assertEquals(expectedError, jsLinter(oneError));
+    }
+
+
+    // Testing for no errors
+    @Test
+    public void testJsLinterNoErrors() {
+        String expectedError = "";
+        File noErrors = new File("src/main/resources/noErrors.js");
+
+        assertEquals(expectedError, jsLinter(noErrors));
+    }
+
+
+    // Testing for empty file
+    @Test
+    public void testJsLinterEmptyFile() {
+        String expectedError = "";
+        File empty = new File("src/main/resources/empty.js");
+
+        assertEquals(expectedError, jsLinter(empty));
     }
 }

@@ -83,6 +83,7 @@ public class Library {
         int min = Integer.MAX_VALUE;
         String message = "";
 
+        // Check which day has max and min temperatures and add all temp to hashset
         for (int[] week: arr2D) {
             for (int day: week) {
                 if (day > max) {
@@ -96,12 +97,13 @@ public class Library {
 
         message += String.format("High: %d\n", max);
         message += String.format("Low: %d\n", min);
+
+        // Checks which temperatures are not in the range between high and low
         for (int i = min; i <= max; i++) {
             if (!seenTemperatures.contains(i)) {
                 message += String.format("Never saw temperature: %d\n", i);
             }
         }
-
         return message;
     }
 
@@ -112,10 +114,12 @@ public class Library {
     public static String tally(List<String> votes) {
         HashMap<String, Integer> voteCount = new HashMap<>();
 
+        // If there is no vote, return Nobody
         if (votes.size() == 0) {
             return "Nobody";
         }
 
+        // Tally up the vote for each candidates and store it in voteCount
         for (String vote : votes) {
             if (voteCount.containsKey(vote)) {
                 voteCount.replace(vote, voteCount.get(vote) + 1);
@@ -126,6 +130,9 @@ public class Library {
 
         int highestTally = 0;
         String currentWinner = "";
+
+        // Check which person has the highest number of votes and store the name in currentWinner
+        // If the number of votes are the same, concat the candidates to currentWinner.
         for (String vote : voteCount.keySet()) {
             if (voteCount.get(vote) > highestTally) {
                 currentWinner = vote;

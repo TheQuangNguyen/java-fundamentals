@@ -163,23 +163,55 @@ public class LibraryTest {
                 "Never saw temperature: 69\n",
             temperatureNotSeen(weeklyMonthTemperatures));
     }
-//
-//    // Testing if all data was the same
-//    @Test
-//    public void testTemperatureNotSeenDuplicates() {
-//        int[][] weeklyMonthTemperatures = {
-//            {60,60,60,60,60,60,60},
-//            {60,60,60,60,60,60,60},
-//            {60,60,60,60,60,60,60},
-//            {60,60,60,60,60,60,60}
-//        };
-//
-//        assertEquals("The temperature that was never seen should be N/A",
-//            "Never saw temperatures: 63,67,68,69",
-//            temperatureNotSeen(weeklyMonthTemperatures));
-//    }
+
+    // Testing if all data was the same
+    @Test
+    public void testTemperatureNotSeenDuplicates() {
+        int[][] weeklyMonthTemperatures = {
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60},
+            {60,60,60,60,60,60,60}
+        };
+
+        assertEquals("The temperature that was never seen should be none",
+            "High: 60\n" +
+                    "Low: 60\n",
+            temperatureNotSeen(weeklyMonthTemperatures));
+    }
 
     // Testing if there was not any temperatures that were not seen
+    @Test
+    public void testTemperatureNotSeenNone() {
+        int[][] weeklyMonthTemperatures = {
+                {60,61,62,63,64,65,66},
+                {67,68,69,70,71,72,73},
+                {60,59,58,57,56,55,54},
+                {53,52,51,50,49,48,47}
+        };
+
+        assertEquals("The temperature that was never seen should be none",
+                "High: 73\n" +
+                        "Low: 47\n",
+                temperatureNotSeen(weeklyMonthTemperatures));
+    }
+
+    // Testing for one temperature not seen
+    @Test
+    public void testTemperatureNotSeenOne() {
+        int[][] weeklyMonthTemperatures = {
+                {60,61,62,63,64,65,66},
+                {67,68,69,70,71,72,74},
+                {60,59,58,57,56,55,54},
+                {53,52,51,50,49,48,47}
+        };
+
+        assertEquals("The temperature that was never seen should be 73",
+                "High: 74\n" +
+                        "Low: 47\n" +
+                        "Never saw temperature: 73\n",
+                temperatureNotSeen(weeklyMonthTemperatures));
+    }
 
 
     //////////////////////////////// Testing for tallying election method ///////////////////////////////
