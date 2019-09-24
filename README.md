@@ -46,7 +46,7 @@ Given an array of arrays calculate the average value for each array and return t
 
 ### Feature Tasks
 
-[Code Solution to First Two Problems]()
+[Code Solution to First Two Problems](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/basiclibrary/src/main/java/basiclibrary/Library.java)
 
 #### 1. Analyzing Weather Data
 
@@ -95,7 +95,7 @@ System.out.println(winner + " received the most votes!");
 
 #### 3. Javascript Linter
 
-[Code For JS linter]()
+[Code For JS linter](https://github.com/TheQuangNguyen/java-fundamentals/blob/master/linter/src/main/java/linter/App.java)
 
 Write a method that reads a JavaScript file with a given Path, and generates an error message whenever it finds a line that doesn’t end in a semi-colon.
 
@@ -110,7 +110,7 @@ Don’t show an error if the line contains if or else
 
 ### Feature Tasks
 
-[Code Implementation of Feature Tasks]()
+[Code Implementation of Feature Tasks](https://github.com/TheQuangNguyen/java-fundamentals/tree/master/inheritance/src/main/java/inheritance)
 
 1. Create a class to represent a Restaurant. Each Restaurant should have a name, a number of stars betweeen 0 and 5, and a price category (i.e. number of dollar signs).
     - Implement a Restaurant constructor.
