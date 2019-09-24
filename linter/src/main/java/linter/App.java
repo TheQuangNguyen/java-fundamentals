@@ -40,9 +40,6 @@ public class App {
             while (reader.hasNextLine()) {
                 String lineOfCode = reader.nextLine();
                 lineNumber++;
-//                if (!lineOfCode.contains("if") && !lineOfCode.contains("else") &&
-//                    !lineOfCode.endsWith("}") && !lineOfCode.endsWith("{") &&
-//                    !lineOfCode.isBlank() && !lineOfCode.contains("//")) {
                 if (!lineOfCode.isBlank() && !lineOfCode.startsWith("//")) {
                     if (!lineOfCode.contains("else")) {
                         if (!lineOfCode.contains("if")) {
