@@ -4,18 +4,24 @@ public class Review {
     public String body;
     public String author;
     public double starsRating;
-    public String reviewedRestaurant;
+    public String restaurantName;
 
-    public Review(String body, String author, double starsRating, String reviewedRestaurant) {
+    public Review(String body, String author, double starsRating, String restaurantName) {
         this.body = body;
         this.author = author;
         this.starsRating = starsRating;
-        this.reviewedRestaurant = reviewedRestaurant;
+        this.restaurantName = restaurantName;
     }
 
+    // make toString method that takes the instance variables and use them in a sentence to describe the review
     @Override
     public String toString() {
         return String.format("%s has left a review about %s commenting that \"%s\" with a rating of %.1f stars out of 5",
-        this.author, this.reviewedRestaurant, this.body, this.starsRating);
+        this.author, this.restaurantName, this.body, this.starsRating);
+    }
+
+    // update the stars for this review
+    public void updateStars(double stars) {
+        this.starsRating = stars;
     }
 }
