@@ -13,7 +13,7 @@ public class RestaurantTest {
     public void setUp() throws Exception {
         newRestaurant = new Restaurant("Zapverr", "$$");
         newReview = new Review("This restaurant has good food and service",
-                            "Anonymous", 4.0, newRestaurant.name);
+                            "Anonymous", 4.0, newRestaurant);
     }
 
     // Test toString method to see if it prints out the expected sentence
@@ -26,14 +26,14 @@ public class RestaurantTest {
     @Test
     public void testRestaurantStoringReviews() {
         newRestaurant.addReview(newReview);
-        Review newReview2 = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant.name);
+        Review newReview2 = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant);
         newRestaurant.addReview(newReview2);
-        Review newReview3 = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant.name);
+        Review newReview3 = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant);
         newRestaurant.addReview((newReview3));
 
-        assertTrue(newRestaurant.listOfReview.contains(newReview));
-        assertTrue(newRestaurant.listOfReview.contains(newReview2));
-        assertTrue(newRestaurant.listOfReview.contains(newReview3));
+        assertTrue(newRestaurant.listOfReviews.contains(newReview));
+        assertTrue(newRestaurant.listOfReviews.contains(newReview2));
+        assertTrue(newRestaurant.listOfReviews.contains(newReview3));
     }
 
     // Test if we can get the current stars rating of the restaurant
@@ -41,9 +41,9 @@ public class RestaurantTest {
     @Test
     public void testStarsRatingMultipleReviews() {
         newRestaurant.addReview(newReview);
-        newReview = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant.name);
+        newReview = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant);
         newRestaurant.addReview(newReview);
-        newReview = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant.name);
+        newReview = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant);
         newRestaurant.addReview((newReview));
 
         assertEquals("The stars rating for Zapverr should be 3.3 right now", 3.3, newRestaurant.getStarsRating(), 0.1);
