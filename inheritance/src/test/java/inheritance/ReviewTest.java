@@ -16,11 +16,11 @@ public class ReviewTest {
     public void setUp() throws Exception {
         newRestaurant = new Restaurant("Zapverr", "$$");
         newReview = new Review("This restaurant has good food and service",
-                "Anonymous", 4.0, newRestaurant.name);
+                "Anonymous", 4.0, newRestaurant);
         newRestaurant.addReview(newReview);
-        newReview2 = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant.name);
+        newReview2 = new Review("food was terrible and servers were rude", "Quang", 1.0, newRestaurant);
         newRestaurant.addReview(newReview2);
-        newReview3 = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant.name);
+        newReview3 = new Review("food was ok, not great, and servers did not check on me as often", "Chan", 3.0, newRestaurant);
         newRestaurant.addReview((newReview3));
     }
 
