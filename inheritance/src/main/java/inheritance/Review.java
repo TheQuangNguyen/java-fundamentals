@@ -5,12 +5,25 @@ public class Review {
     public String author;
     public double starsRating;
     public Reviewable place;
+    public Object product;
 
     public Review(String body, String author, double starsRating, Reviewable place) {
         this.body = body;
         this.author = author;
         this.starsRating = starsRating;
         this.place = place;
+    }
+
+    public Review(String body, String author, double starsRating, Reviewable place, Object product) {
+        this.body = body;
+        this.author = author;
+        this.starsRating = starsRating;
+        this.place = place;
+        if (place instanceof ReviewableProduct) {
+            this.product = product;
+        } else {
+            throw new IllegalArgumentException("The place needs to have reviewable products");
+        }
     }
 
     // make toString method that takes the instance variables and use them in a sentence to describe the review

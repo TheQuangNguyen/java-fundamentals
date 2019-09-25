@@ -37,6 +37,4 @@ public class ShopTest {
         assertTrue(newShop.listOfReviews.contains(newReview2));
         assertTrue(newShop.listOfReviews.contains(newReview3));
     }
-
-
 }

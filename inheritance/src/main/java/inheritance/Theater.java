@@ -1,18 +1,21 @@
 package inheritance;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Theater implements Reviewable {
+public class Theater implements Reviewable,ReviewableProduct {
 
     public String name;
     public LinkedList<String> movies;
     public LinkedList<Review> listOfReviews;
+    public LinkedList<Review> listOfMovieReviews;
 
     public Theater(String name) {
         this.name = name;
         this.movies = new LinkedList<>();
         this.listOfReviews = new LinkedList<>();
+        this.listOfMovieReviews = new LinkedList<>();
     }
 
     @Override
@@ -43,6 +46,22 @@ public class Theater implements Reviewable {
         }
     }
 
+    // add a movie review to the list. This is specified in RenewableProduct interface
+    @Override
+    public void addProductReview(Review productReview) {
+        if (listOfMovieReviews.contains(productReview)) {
+            System.out.println(String.format("Review for %s was already submitted", productReview.product.toString()));
+        } else {
+            listOfMovieReviews.add(productReview);
+        }
+    }
+
+    // checks to see if this theater has the movie that a review is going to be for. This is specified in RenewableProduct interface
+    @Override
+    public boolean hasProduct(Object product) {
+        return movies.contains(product);
+    }
+
     // add movies to list, if movies already shown in theater then it wont be added to list
     public void addMovie(String movie) {
         if (!movies.contains(movie)) {
@@ -53,6 +72,17 @@ public class Theater implements Reviewable {
     // remove movie from list
     public void removeMovie(String movie) {
         movies.remove(movie);
+        // declare an iterator to go through the list and remove any reviews about the movie we are removing
+        // an iterator is needed to avoid ConcurrentModificationException when going through a list
+        // and remove elements at the same time
+        Iterator<Review> i = listOfMovieReviews.iterator();
+
+        while (i.hasNext()) {
+            Review currentReview = i.next();
+            if (currentReview.product.equals(movie)) {
+                i.remove();
+            }
+        }
     }
 
 

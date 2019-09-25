@@ -14,7 +14,7 @@ public class UserTest {
         Review newReview = new Review("This place was ok", newUser.username, 3.0, newRestaurant);
 
         newUser.createReview(newRestaurant, newReview);
-        Review createdReview = newRestaurant.listOfReview.get(0);
+        Review createdReview = newRestaurant.listOfReviews.get(0);
 
         // testing if this review in the list is the review we just created and put in the list
         assertEquals(newUser.username, createdReview.author);
